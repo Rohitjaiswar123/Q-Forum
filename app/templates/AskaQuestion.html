@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <meta name="theme-color" content="#000000" />
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+       <link rel="stylesheet" href="{%static 'styling.css' %}">
+    
+
+
+
+<title>Forum</title>
+</head>
+
+<body>
+{% if user.is_authenticated %}
+  <!--navbaar-->
+    <header>
+          <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <!-- Brand -->
+          <a class="navbar-brand" href="#">Forum</a>
+          
+          <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="{% url 'AskaQuestion' %}">Ask a Question</a>
+          </div>
+    
+         <!-- Use any element to open the sidenav -->
+         <span class="span" onclick="openNav()"><button type="button" class="btn btn-dark font-weight-bold" >Menu</button></span>
+          
+          
+          
+         
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target= "#menu">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class=" collapse navbar-collapse" id="menu">
+          <!-- Links -->
+          <ul class="navbar-nav ml-auto font-weight-bold">
+            <li class="nav-item">
+              <a class="nav-link" href="home">Home</a>
+            </li>
+            <li class=" nav-item ">
+              <a class="nav-link">Hello! {{user.first_name}}</a>      
+            </li>            
+            <li class="nav-item">
+              <a class="nav-link" href="logout">Logout</a>
+            </li>
+          </div>   
+          </ul>
+         </nav>
+    </header>
+    <!--navbaar end-->
+<div id="container">
+    <div id="main">
+        <section class="container">
+            <div class="container">
+             <h1 class="text-center text-capitalize pt-5"> Ask your Question</h1>
+             <hr class="w-30 mx-auto pt-5 pb-5"></hr>
+             </div>
+         </section>
+           
+             <div class= "text-center d-flex align-item-center flex-column justify-content-center bg-dark text-white container pt-5">   
+             <form method="POST">     {% csrf_token %}
+             {{form.as_p}}
+            <button type="submit" class="btn btn-primary mb-2 p-1"> Submit </button>
+           
+           </form>
+           </div>
+          
+         
+   </div>    
+</div>           
+             
+                 
+
+     <footer class="footer-expand-sm  text-white bg-dark">
+        <div>
+        <h1 class="text-capitalize pl-5 pt-5">Forum</h1>
+        <h2 class="text-capitalize mb-4  pt-0 text-center">follow us on</h2>
+        </div>      
+         <div>
+            <ul class="d-flex flex-row justify-content-center">
+                  <span><a href="https://www.instagram.com/jayesh_kira/?igshid=1aacqc8bme9d2" target="_blank"><img src = '{%static "Images/instagram.png"%}'height="60" width="60"></a></span>
+                  <span><a href ="https://chat.whatsapp.com/FMzc02Suum69ekm4STymgR" target="_blank"><img src = '{%static "Images/whatsapp.png"%}'height="60" width="60"></a></span>
+                <span><a href="https://www.facebook.com/JAYESHSINGHKIRA" target="_blank"><img src = '{%static "Images/facebook.png"%}'height="60" width="60"></a></span>
+            </ui>           
+         </div>
+    </footer>
+    
+   
+    
+ <script src="{% static 'script.js' %}"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{% endif %}
+</body>
+
+</html>
